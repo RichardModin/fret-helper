@@ -1,0 +1,205 @@
+
+@keyframes sparkle-0 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-0), 0 0 10px var(--sparkle-color-0-1), 0 0 15px var(--sparkle-color-0-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-0), 0 0 15px var(--sparkle-color-0-1), 0 0 20px var(--sparkle-color-0-2);
+    }
+}
+
+@keyframes sparkle-1 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-1), 0 0 10px var(--sparkle-color-1-1), 0 0 15px var(--sparkle-color-1-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-1), 0 0 15px var(--sparkle-color-1-1), 0 0 20px var(--sparkle-color-1-2);
+    }
+}
+
+@keyframes sparkle-2 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-2), 0 0 10px var(--sparkle-color-2-1), 0 0 15px var(--sparkle-color-2-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-2), 0 0 15px var(--sparkle-color-2-1), 0 0 20px var(--sparkle-color-2-2);
+    }
+}
+
+@keyframes sparkle-3 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-3), 0 0 10px var(--sparkle-color-3-1), 0 0 15px var(--sparkle-color-3-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-3), 0 0 15px var(--sparkle-color-3-1), 0 0 20px var(--sparkle-color-3-2);
+    }
+}
+
+@keyframes sparkle-4 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-4), 0 0 10px var(--sparkle-color-4-1), 0 0 15px var(--sparkle-color-4-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-4), 0 0 15px var(--sparkle-color-4-1), 0 0 20px var(--sparkle-color-4-2);
+    }
+}
+
+@keyframes sparkle-5 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-5), 0 0 10px var(--sparkle-color-5-1), 0 0 15px var(--sparkle-color-5-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-5), 0 0 15px var(--sparkle-color-5-1), 0 0 20px var(--sparkle-color-5-2);
+    }
+}
+
+@keyframes sparkle-6 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-6), 0 0 10px var(--sparkle-color-6-1), 0 0 15px var(--sparkle-color-6-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-6), 0 0 15px var(--sparkle-color-6-1), 0 0 20px var(--sparkle-color-6-2);
+    }
+}
+
+@keyframes sparkle-7 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-7), 0 0 10px var(--sparkle-color-7-1), 0 0 15px var(--sparkle-color-7-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-7), 0 0 15px var(--sparkle-color-7-1), 0 0 20px var(--sparkle-color-7-2);
+    }
+}
+
+@keyframes sparkle-8 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-8), 0 0 10px var(--sparkle-color-8-1), 0 0 15px var(--sparkle-color-8-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-8), 0 0 15px var(--sparkle-color-8-1), 0 0 20px var(--sparkle-color-8-2);
+    }
+}
+
+@keyframes sparkle-9 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-9), 0 0 10px var(--sparkle-color-9-1), 0 0 15px var(--sparkle-color-9-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-9), 0 0 15px var(--sparkle-color-9-1), 0 0 20px var(--sparkle-color-9-2);
+    }
+}
+
+@keyframes sparkle-10 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-10), 0 0 10px var(--sparkle-color-10-1), 0 0 15px var(--sparkle-color-10-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-10), 0 0 15px var(--sparkle-color-10-1), 0 0 20px var(--sparkle-color-10-2);
+    }
+}
+
+@keyframes sparkle-11 {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--sparkle-color-11), 0 0 10px var(--sparkle-color-11-1), 0 0 15px var(--sparkle-color-11-2);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--sparkle-color-11), 0 0 15px var(--sparkle-color-11-1), 0 0 20px var(--sparkle-color-11-2);
+    }
+}
+
+.sunburst-table .cell.active.interval-0 {
+    background-color: var(--sparkle-color-0-background);
+    animation: sparkle-0 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-1 {
+    background-color: var(--sparkle-color-1-background);
+    animation: sparkle-1 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-2 {
+    background-color: var(--sparkle-color-2-background);
+    animation: sparkle-2 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-3 {
+    background-color: var(--sparkle-color-3-background);
+    animation: sparkle-3 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-4 {
+    background-color: var(--sparkle-color-4-background);
+    animation: sparkle-4 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-5 {
+    background-color: var(--sparkle-color-5-background);
+    animation: sparkle-5 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-6 {
+    background-color: var(--sparkle-color-6-background);
+    animation: sparkle-6 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-7 {
+    background-color: var(--sparkle-color-7-background);
+    animation: sparkle-7 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-8 {
+    background-color: var(--sparkle-color-8-background);
+    animation: sparkle-8 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-9 {
+    background-color: var(--sparkle-color-9-background);
+    animation: sparkle-9 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-10 {
+    background-color: var(--sparkle-color-10-background);
+    animation: sparkle-10 1.5s infinite;
+}
+
+.sunburst-table .cell.active.interval-11 {
+    background-color: var(--sparkle-color-11-background);
+    animation: sparkle-11 1.5s infinite;
+}
+
+.note.interval-0 {
+    color: var(--sparkle-color-0-background);
+}
+.note.interval-1 {
+    color: var(--sparkle-color-1-background);
+}
+.note.interval-2 {
+    color: var(--sparkle-color-2-background);
+}
+.note.interval-3 {
+    color: var(--sparkle-color-3-background);
+}
+.note.interval-4 {
+    color: var(--sparkle-color-4-background);
+}
+.note.interval-5 {
+    color: var(--sparkle-color-5-background);
+}
+.note.interval-6 {
+    color: var(--sparkle-color-6-background);
+}
+.note.interval-7 {
+    color: var(--sparkle-color-7-background);
+}
+.note.interval-8 {
+    color: var(--sparkle-color-8-background);
+}
+.note.interval-9 {
+    color: var(--sparkle-color-9-background);
+}
+.note.interval-10 {
+    color: var(--sparkle-color-10-background);
+}
+.note.interval-11 {
+    color: var(--sparkle-color-11-background);
+}

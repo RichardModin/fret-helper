@@ -1,0 +1,167 @@
+@import url('colors.css');
+@import url('sparkles.css');
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #000000;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+#chordNotes > span.note > sup, #scaleNotes > span.note > sup {
+    font-size: 1rem;
+}
+
+
+.sunburst-button {
+    background: #000000;
+    border: 2px solid #ffffff;
+    padding: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: #ffffff;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.sunburst-button.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.sunburst-button:hover {
+    transform: scale(1.05);
+}
+
+.sunburst-table {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+.sunburst-table .row {
+    display: flex;
+}
+
+.sunburst-table .cell {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    font-size: 22px;
+    transition: background-color 0.3s, color 0.3s;
+    background: #000000;
+    border: 2px solid #ffffff;
+    margin: 2px;
+    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    border-radius: 10px;
+}
+
+.sunburst-table .cell:hover {
+    transform: scale(1.05);
+}
+
+.sunburst-table .cell:first-child {
+    font-weight: bold;
+    border-right: 12px solid #ffffff !important;
+}
+
+.sunburst-table .cell.active {
+    --animation-order: 0;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
+    animation: sparkle-0 1.5s infinite;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+    animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    z-index: 1000;
+    transform: scale(1.05);
+}
+
+.floating-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 10px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+    border-radius: 20px;
+    border: none;
+}
+
+#instrumentSelect {
+    background: none;
+    outline: none;
+    text-align: center;
+    color: #ffffff;
+    background: #000000;
+    border: 2px solid #ffffff;
+    padding: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.selected {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    animation: sparkle-0 1.5s infinite;
+}
+
+.sunburst-table .cell:first-child {
+    width: 25px;
+}
+
+#container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+#chordsContainer , #scalesContainer {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls .chords,
+.controls .scales {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.header {
+    text-align: center;
+}
+
+#neck > div:nth-child(1) > div:nth-child(1) {
+    border-color: #000000 !important;
+}
