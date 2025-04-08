@@ -1,4 +1,7 @@
 :root {
+    --background-primary: #000000;
+    --foreground-primary: #ffffff;
+
     --sparkle-color-0: #ffb399; /* Coral */
     --sparkle-color-0-1: #fff5f0;
     --sparkle-color-0-2: #ff9977;

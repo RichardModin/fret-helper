@@ -7,15 +7,15 @@ html {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #000000;
-    color: #ffffff;
+    background: var(--background-primary);
+    color: var(--foreground-primary);
     margin: 0;
     padding: 20px;
     font-size: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: var(--foreground-primary);
 }
 
 #chordNotes > span.note > sup, #scaleNotes > span.note > sup {
@@ -26,9 +26,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .sunburst-button {
     flex: auto;
-    background: #000000;
-    border: 2px solid #ffffff;
-    color: #ffffff;
+    background: var(--background-primary);
+    border: 2px solid var(--foreground-primary);
+    color: var(--foreground-primary);
     padding: 16px;
     display: inline-flex;
     justify-content: center;
@@ -42,9 +42,9 @@ h1, h2, h3, h4, h5, h6 {
 .sunburst-button.selected {
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
-    background: #ffffff;
-    border: 2px solid #000000;
-    color: #000000;
+    background: var(--foreground-primary);
+    border: 2px solid var(--background-primary);
+    color: var(--background-primary);
 }
 
 .sunburst-button.disabled {
@@ -88,14 +88,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .note-interval {
     flex: 1;
-    background: #000000;
+    background: var(--background-primary);
     border: 2px solid;
     margin: 2px;
     border-radius: 10px;
-    color: #ffffff;
+    color: var(--foreground-primary);
     font-size: 22px;
     padding: 12px;
     transition: all 0.3s ease-in-out;
+    text-align: center;
 }
 
 .sunburst-table .cell {
@@ -103,14 +104,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px;
     text-align: center;
     font-size: 22px;
-    background: #000000;
-    border: 2px solid #ffffff;
+    background: var(--background-primary);
+    border: 2px solid var(--foreground-primary);
     margin: 2px;
     width: 30px;
     min-width: 30px;
     max-width: 30px;
     border-radius: 10px;
-    color: #ffffff;
+    color: var(--foreground-primary);
     transition: all 0.3s ease-in-out;
 }
 
@@ -122,20 +123,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .sunburst-table:not(.rtl) .cell:first-child {
     font-weight: bold;
-    border-right: 12px solid #ffffff !important;
+    border-right: 12px solid var(--foreground-primary) !important;
 }
 
 .sunburst-table:not(.ltr) .cell:last-child {
     font-weight: bold;
-    border-left: 12px solid #ffffff !important;
+    border-left: 12px solid var(--foreground-primary) !important;
 }
 
 .sunburst-table:not(.rtl) .cell.no-border {
-    border-color: #000000 !important;
+    border-color: var(--background-primary) !important;
 }
 
 .sunburst-table:not(.ltr) .cell.no-border {
-    border-color: #000000 !important;
+    border-color: var(--background-primary) !important;
 }
 
 .sunburst-table .cell.active {
@@ -153,8 +154,8 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--foreground-primary);
+    color: var(--background-primary);
     padding: 10px 10px;
     height: 40px;
     width: 40px;
@@ -168,9 +169,9 @@ h1, h2, h3, h4, h5, h6 {
 select {
     background: none;
     outline: none;
-    color: #ffffff;
-    background: #000000;
-    border: 2px solid #ffffff;
+    color: var(--foreground-primary);
+    background: var(--background-primary);
+    border: 2px solid var(--foreground-primary);
     padding: 16px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
