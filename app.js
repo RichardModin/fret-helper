@@ -99,13 +99,6 @@ function generateMusicalScale(startingNotes, frets) {
   return musicalScale;
 }
 
-function updateSelectedNoteSpans(name) {
-  document.querySelectorAll('span.selected-note').forEach(span => {
-    span.setAttribute('data-actual-note', name);
-    span.textContent = getNoteRepresentation(name);
-  });
-}
-
 function renderScaleGrid() {
   const musicalScale = generateMusicalScale(instrumentNotes, frets);
   const container = document.getElementById('neck');
