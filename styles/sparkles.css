@@ -1,3 +1,12 @@
+@keyframes sparkle-button {
+    0%, 100% {
+        box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
+    }
+    50% {
+        box-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #ffffff;
+    }
+}
+
 @keyframes sparkle-0 {
     0%, 100% {
         box-shadow: 0 0 5px var(--sparkle-color-0), 0 0 10px var(--sparkle-color-0-1), 0 0 15px var(--sparkle-color-0-2);
@@ -111,6 +120,7 @@
     animation: sparkle-0 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-1 {
@@ -118,6 +128,7 @@
     animation: sparkle-1 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-2 {
@@ -125,6 +136,7 @@
     animation: sparkle-2 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-3 {
@@ -132,6 +144,7 @@
     animation: sparkle-3 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-4 {
@@ -139,6 +152,7 @@
     animation: sparkle-4 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-5 {
@@ -146,6 +160,7 @@
     animation: sparkle-5 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-6 {
@@ -153,6 +168,7 @@
     animation: sparkle-6 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-7 {
@@ -160,6 +176,7 @@
     animation: sparkle-7 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-8 {
@@ -167,6 +184,7 @@
     animation: sparkle-8 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-9 {
@@ -174,6 +192,7 @@
     animation: sparkle-9 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-10 {
@@ -181,48 +200,85 @@
     animation: sparkle-10 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
-.sunburst-table .cell.active.interval-11 {
+.sunburst-table .cell.active.interval-11, .note-interval-11 {
     background-color: var(--sparkle-color-11-background);
     animation: sparkle-11 1.5s infinite;
     animation-delay: calc(var(--animation-order) * 0.1s);
     animation-duration: calc(1.5s + var(--animation-order) * 0.5s);
+    transition: all 0.3s ease-in-out;
 }
 
 .note.interval-0 {
-    color: var(--sparkle-color-0-background);
+    background-color: var(--sparkle-color-0-background);
+    animation: sparkle-0 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-1 {
-    color: var(--sparkle-color-1-background);
+    background-color: var(--sparkle-color-1-background);
+    animation: sparkle-1 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-2 {
-    color: var(--sparkle-color-2-background);
+    background-color: var(--sparkle-color-2-background);
+    animation: sparkle-2 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-3 {
-    color: var(--sparkle-color-3-background);
+    background-color: var(--sparkle-color-3-background);
+    animation: sparkle-3 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-4 {
-    color: var(--sparkle-color-4-background);
+    background-color: var(--sparkle-color-4-background);
+    animation: sparkle-4 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-5 {
-    color: var(--sparkle-color-5-background);
+    background-color: var(--sparkle-color-5-background);
+    animation: sparkle-5 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-6 {
-    color: var(--sparkle-color-6-background);
+    background-color: var(--sparkle-color-6-background);
+    animation: sparkle-6 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-7 {
-    color: var(--sparkle-color-7-background);
+    background-color: var(--sparkle-color-7-background);
+    animation: sparkle-7 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-8 {
-    color: var(--sparkle-color-8-background);
+    background-color: var(--sparkle-color-8-background);
+    animation: sparkle-8 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-9 {
-    color: var(--sparkle-color-9-background);
+    background-color: var(--sparkle-color-9-background);
+    animation: sparkle-9 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-10 {
-    color: var(--sparkle-color-10-background);
+    background-color: var(--sparkle-color-10-background);
+    animation: sparkle-10 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }
+
 .note.interval-11 {
-    color: var(--sparkle-color-11-background);
+    background-color: var(--sparkle-color-11-background);
+    animation: sparkle-11 1.5s infinite;
+    transition: all 0.3s ease-in-out;
 }

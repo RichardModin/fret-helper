@@ -1,61 +1,61 @@
 :root {
-    --sparkle-color-0: #ffb399;
+    --sparkle-color-0: #ffb399; /* Coral */
     --sparkle-color-0-1: #fff5f0;
-    --sparkle-color-0-2: #ff9966;
-    --sparkle-color-0-background: #d47f6a;
+    --sparkle-color-0-2: #ff9977;
+    --sparkle-color-0-background: #d46a5a;
 
-    --sparkle-color-1: #ff99aa;
+    --sparkle-color-1: #ff99bb; /* Rose Pink */
     --sparkle-color-1-1: #fff0f5;
-    --sparkle-color-1-2: #ff6688;
-    --sparkle-color-1-background: #cc6a7e;
+    --sparkle-color-1-2: #ff6699;
+    --sparkle-color-1-background: #cc6a85;
 
-    --sparkle-color-2: #ff66cc;
+    --sparkle-color-2: #ff66cc; /* Magenta */
     --sparkle-color-2-1: #ffe6f9;
     --sparkle-color-2-2: #ff33aa;
     --sparkle-color-2-background: #b84d99;
 
-    --sparkle-color-3: #cc66ff;
+    --sparkle-color-3: #cc66ff; /* Purple */
     --sparkle-color-3-1: #f0e0ff;
     --sparkle-color-3-2: #aa33ff;
     --sparkle-color-3-background: #8f4db8;
 
-    --sparkle-color-4: #9966ff;
+    --sparkle-color-4: #9966ff; /* Indigo */
     --sparkle-color-4-1: #e5d0ff;
     --sparkle-color-4-2: #6633ff;
     --sparkle-color-4-background: #6b4dcc;
 
-    --sparkle-color-5: #6699ff;
+    --sparkle-color-5: #6699ff; /* Sapphire */
     --sparkle-color-5-1: #d0e5ff;
     --sparkle-color-5-2: #3377ff;
     --sparkle-color-5-background: #4d73cc;
 
-    --sparkle-color-6: #33ccff;
+    --sparkle-color-6: #33ccff; /* Teal Blue */
     --sparkle-color-6-1: #d0f8ff;
     --sparkle-color-6-2: #00bbff;
-    --sparkle-color-6-background: #4d99b8;
+    --sparkle-color-6-background: #4daacc;
 
-    --sparkle-color-7: #33ffc1;
+    --sparkle-color-7: #33ffc1; /* Aqua Green */
     --sparkle-color-7-1: #e0fff5;
     --sparkle-color-7-2: #00e6aa;
     --sparkle-color-7-background: #4db89f;
 
-    --sparkle-color-8: #99ff66;
-    --sparkle-color-8-1: #eaffd0;
+    --sparkle-color-8: #99ff66; /* Lime Green */
+    --sparkle-color-8-1: #f0ffe0;
     --sparkle-color-8-2: #66ff33;
     --sparkle-color-8-background: #73cc4d;
 
-    --sparkle-color-9: #ccff66;
+    --sparkle-color-9: #ccff66; /* Chartreuse */
     --sparkle-color-9-1: #f9fff0;
     --sparkle-color-9-2: #bbff33;
     --sparkle-color-9-background: #aacc4d;
 
-    --sparkle-color-10: #ffeb66;
+    --sparkle-color-10: #ffee66; /* Light Yellow-Green */
     --sparkle-color-10-1: #fffce5;
-    --sparkle-color-10-2: #ffd733;
+    --sparkle-color-10-2: #ffdd33;
     --sparkle-color-10-background: #d4b84d;
 
-    --sparkle-color-11: #ffa366;
-    --sparkle-color-11-1: #fff3e5;
-    --sparkle-color-11-2: #ff8844;
-    --sparkle-color-11-background: #cc704d;
+    --sparkle-color-11: #5533ff; /* Deep Violet-Blue */
+    --sparkle-color-11-1: #eae5ff;
+    --sparkle-color-11-2: #3311cc;
+    --sparkle-color-11-background: #2d1a99;
 }

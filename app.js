@@ -72,17 +72,13 @@ function updateActiveNotes(scale, notes) {
     const selectedNoteIndex = getNoteIndex(selectedNote);
     if (selectedNoteIndex !== -1) {
       const interval = (noteIndex - selectedNoteIndex + chromaticScale.length) % chromaticScale.length;
-      span.classList.add(`interval-${interval}`);
+      span.classList.add('note-interval', `interval-${interval}`);
       const sup = document.createElement('sup');
       sup.textContent = intervalNames[interval];
       span.appendChild(sup);
     }
     title.appendChild(span);
-    title.appendChild(document.createTextNode(', '));
   });
-  if (title.lastChild) {
-    title.removeChild(title.lastChild);
-  }
 }
 
 function generateMusicalScale(startingNotes, frets) {

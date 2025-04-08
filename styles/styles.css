@@ -21,11 +21,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #chordNotes > span.note > sup, #scaleNotes > span.note > sup {
-    font-size: 1rem;
+    font-size: 0.75rem;
+    padding-left: 2px;
 }
 
 
 .sunburst-button {
+    flex: auto;
     background: #000000;
     border: 2px solid #ffffff;
     padding: 16px;
@@ -36,8 +38,13 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     color: #ffffff;
-    margin: 10px;
     border-radius: 15px;
+}
+
+.sunburst-button.selected {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    animation: sparkle-button 1.5s infinite;
 }
 
 .sunburst-button.disabled {
@@ -46,12 +53,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sunburst-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.15);
 }
 
 .sunburst-table {
     width: 100%;
-    overflow: hidden;
+    overflow-y: hidden;
     display: flex;
     flex-direction: column;
     padding: 20px 0;
@@ -61,12 +68,38 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
 }
 
+#chordNotes, #scaleNotes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+#chordsContainer, #scalesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.note-interval {
+    flex: 1;
+    background: #000000;
+    border: 2px solid;
+    margin: 2px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 22px;
+    padding: 12px;
+    transition: all 0.3s ease-in-out;
+}
+
 .sunburst-table .cell {
     flex: 1;
     padding: 12px;
     text-align: center;
     font-size: 22px;
-    transition: background-color 0.3s, color 0.3s;
     background: #000000;
     border: 2px solid #ffffff;
     margin: 2px;
@@ -74,10 +107,13 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 30px;
     max-width: 30px;
     border-radius: 10px;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
 }
 
-.sunburst-table .cell:hover {
+.sunburst-table .cell:hover, .sunburst-table .cell.active:hover {
     transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
@@ -128,23 +164,12 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 15px;
 }
 
-.selected {
-    transform: scale(1.1);
-    transition: all 0.3s ease-in-out;
-    animation: sparkle-0 1.5s infinite;
-}
-
 .sunburst-table .cell:first-child {
     width: 25px;
 }
 
 #container {
     max-width: 1500px;
-    margin: 0 auto;
-}
-
-#chordsContainer , #scalesContainer {
-    max-width: 1440px;
     margin: 0 auto;
 }
 
@@ -157,6 +182,12 @@ h1, h2, h3, h4, h5, h6 {
 .controls .scales {
     flex: 1;
     margin: 0 10px;
+}
+
+.chords > span, .scales > span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 0 20px 0;
 }
 
 .header {

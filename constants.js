@@ -15,7 +15,7 @@ const instruments = {
 };
 
 const intervalNames = {
-  0: 'Perfect unison',
+  0: 'Root',
   1: 'Minor second',
   2: 'Major second',
   3: 'Minor third',
