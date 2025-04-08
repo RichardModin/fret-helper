@@ -1,11 +1,23 @@
 import {chromaticScale} from "./constants.js";
 import NoteUtils from "./NoteUtils.js";
 
+/**
+ * NeckRenderer class to manage the rendering of the neck UI.
+ */
 class NeckRenderer {
+
+  /**
+   * Constructor to initialize the NeckRenderer instance.
+   * @param app
+   */
   constructor(app) {
     this.app = app;
   }
 
+  /**
+   * Create the top row of the neck UI.
+   * @returns {HTMLDivElement}
+   */
   createTopRow() {
     const topRow = document.createElement('div');
     topRow.classList.add('row');
@@ -33,6 +45,11 @@ class NeckRenderer {
     });
   }
 
+  /**
+   * Transform the scale into a format suitable for rendering.
+   * @param scale
+   * @returns {*}
+   */
   transformScale(scale) {
     return scale.map(row => row.map(note => ({
       name: note,
@@ -40,6 +57,10 @@ class NeckRenderer {
     })));
   }
 
+  /**
+   * Render the neck UI with the given selected note index.
+   * @param selectedNoteIndex
+   */
   render(selectedNoteIndex) {
     const musicalScale = this.generateMusicalScale(this.app.instrumentNotes);
     const container = document.getElementById('neck');

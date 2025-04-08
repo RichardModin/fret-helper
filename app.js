@@ -2,7 +2,14 @@ import { chromaticScale, instruments, intervalNames, intervals, scaleIntervals }
 import NoteUtils from "./app/NoteUtils.js";
 import NeckRenderer from "./app/NeckRenderer.js";
 
+/**
+ * MusicApp class to manage the music application.
+ */
 class MusicApp {
+
+  /**
+   * Constructor to initialize the MusicApp instance.
+   */
   constructor() {
     this.flipped = true;
     this.handedness = 'right';
@@ -15,6 +22,10 @@ class MusicApp {
     this.renderer = new NeckRenderer(this);
   }
 
+  /**
+   * Handle the click event on a note in the sunburst UI.
+   * @param name
+   */
   handleNoteClick(name) {
     this.selectedNote = name;
     this.activeNotes = [];
@@ -35,6 +46,10 @@ class MusicApp {
     this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
   }
 
+  /**
+   * Update the display of notes in the sunburst UI.
+   * @param isScale
+   */
   updateNoteDisplay(isScale) {
     const main = isScale ? 'scaleNotes' : 'chordNotes';
     const other = isScale ? 'chordNotes' : 'scaleNotes';
@@ -56,6 +71,9 @@ class MusicApp {
     });
   }
 
+  /**
+   * Populate the instrument select dropdown with available instruments.
+   */
   populateInstrumentSelect() {
     const select = document.getElementById('instrumentSelect');
     select.innerHTML = '';
@@ -67,6 +85,9 @@ class MusicApp {
     }
   }
 
+  /**
+   * Generate buttons for chords and scales.
+   */
   generateButtons() {
     const chordsContainer = document.getElementById('chordsContainer');
     const scalesContainer = document.getElementById('scalesContainer');
@@ -90,11 +111,18 @@ class MusicApp {
     Object.keys(scaleIntervals).forEach(key => scalesContainer.appendChild(createBtn(key, true)));
   }
 
+  /**
+   * Update the selected button in the sunburst UI.
+   * @param button
+   */
   updateSelectedButton(button) {
     document.querySelectorAll('.sunburst-button').forEach(btn => btn.classList.remove('selected'));
     button.classList.add('selected');
   }
 
+  /**
+   * Initialize event listeners for various UI elements.
+   */
   initEventListeners() {
     document.getElementById('sharpsFlatsToggle').addEventListener('click', () => {
       NoteUtils.toggleSharpsFlats(NoteUtils.getNoteIndex(this.selectedNote));
@@ -124,6 +152,9 @@ class MusicApp {
     });
   }
 
+  /**
+   * Start the application by populating the instrument select, rendering the neck, and generating buttons.
+   */
   start() {
     this.populateInstrumentSelect();
     this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
