@@ -53,7 +53,6 @@ const intervals = {
 const chromaticScale = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"];
 
 const scaleIntervals = {
-  chromaticScale: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   major: [0, 2, 4, 5, 7, 9, 11],
   minor: [0, 2, 3, 5, 7, 8, 10],
   harmonicMinor: [0, 2, 3, 5, 7, 8, 11],
@@ -66,7 +65,8 @@ const scaleIntervals = {
   lydian: [0, 2, 4, 6, 7, 9, 11],
   mixolydian: [0, 2, 4, 5, 7, 9, 10],
   aeolian: [0, 2, 3, 5, 7, 8, 10],
-  locrian: [0, 1, 3, 5, 6, 8, 10]
+  locrian: [0, 1, 3, 5, 6, 8, 10],
+  chromaticScale: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 };
 
 export {
