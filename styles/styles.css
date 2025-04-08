@@ -117,9 +117,22 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-.sunburst-table .cell:first-child {
+.sunburst-table:not(.rtl) .cell:first-child {
     font-weight: bold;
     border-right: 12px solid #ffffff !important;
+}
+
+.sunburst-table:not(.ltr) .cell:last-child {
+    font-weight: bold;
+    border-left: 12px solid #ffffff !important;
+}
+
+.sunburst-table:not(.rtl) .cell.no-border {
+    border-color: #000000 !important;
+}
+
+.sunburst-table:not(.ltr) .cell.no-border {
+    border-color: #000000 !important;
 }
 
 .sunburst-table .cell.active {
@@ -149,7 +162,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
 }
 
-#instrumentSelect {
+select {
     background: none;
     outline: none;
     text-align: center;
@@ -162,10 +175,6 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     margin: 10px;
     border-radius: 15px;
-}
-
-.sunburst-table .cell:first-child {
-    width: 25px;
 }
 
 #container {
@@ -192,8 +201,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
     text-align: center;
-}
-
-#neck > div:nth-child(1) > div:nth-child(1) {
-    border-color: #000000 !important;
 }

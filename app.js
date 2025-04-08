@@ -1,11 +1,14 @@
-import { instruments, intervalNames, frets, chromaticScale, intervals, scaleIntervals } from './constants.js';
+import {chromaticScale, instruments, intervalNames, intervals, scaleIntervals} from './constants.js';
 
-let instrumentNotes = ["G", "D", "A", "E"].reverse();
+let flipped = true
+let handedness = 'right';
+let instrumentNotes = flipped ? ["G", "D", "A", "E"].reverse() : ["G", "D", "A", "E"];
 let useSharps = true;
 let activeNotes = [];
 let selectedNote = '';
 let selectedChord = '';
 let selectedScale = '';
+let frets = 22;
 
 function toggleSharpsFlats() {
   useSharps = !useSharps;
@@ -109,8 +112,16 @@ function renderScaleGrid() {
   container.innerHTML = '';
   const scaleGrid = createScaleGrid(transformScale(musicalScale));
 
+  if (handedness === 'left') {
+    scaleGrid.forEach(row => {
+      row.reverse();
+    });
+  }
+
   const topRow = createTopRow();
-  container.appendChild(topRow);
+  if (flipped === true) {
+    container.appendChild(topRow);
+  }
 
   scaleGrid.forEach(row => {
     const rowDiv = document.createElement('div');
@@ -157,6 +168,10 @@ function renderScaleGrid() {
     });
     container.appendChild(rowDiv);
   });
+
+  if (flipped === false) {
+    container.appendChild(topRow);
+  }
 
   document.querySelectorAll('.sunburst-table .cell.active').forEach((cell) => {
     const randomValue = new Uint32Array(1);
@@ -206,12 +221,23 @@ function generateButtons() {
 function createTopRow() {
   const topRow = document.createElement('div');
   topRow.classList.add('row');
+  const cells = [];
   for (let i = 0; i <= frets; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
+    if (i === 0) cell.classList.add('no-border');
     cell.textContent = [3, 5, 7, 9, 15, 17, 19, 21].includes(i) ? '•' : [12, 24].includes(i) ? '••' : '';
-    topRow.appendChild(cell);
+    cells.push(cell);
   }
+
+  if (handedness === 'left') {
+    cells.reverse();
+  }
+
+  cells.forEach(cell => {
+    topRow.appendChild(cell);
+  })
+
   return topRow;
 }
 
@@ -259,4 +285,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('sharpsFlatsToggle').addEventListener('click', toggleSharpsFlats);
   document.getElementById('instrumentSelect').addEventListener('change', handleInstrumentChange);
+
+  document.getElementById('handednessSelect').addEventListener('change', (event) => {
+    const neck = document.getElementById('neck');
+    if (event.target.value === 'left') {
+      handedness = 'left';
+      neck.classList.remove('ltr');
+      neck.classList.add('rtl');
+    } else {
+      handedness = 'right';
+      neck.classList.remove('rtl');
+      neck.classList.add('ltr');
+    }
+    renderScaleGrid();
+  });
+
+  document.getElementById('flipNeckSelect').addEventListener('change', (event) => {
+    flipped = event.target.value !== 'flipped';
+    instrumentNotes = instrumentNotes.reverse();
+    renderScaleGrid();
+  });
+
+  document.getElementById('fretCountSelect').addEventListener('change', (event) => {
+    frets = parseInt(event.target.value, 10);
+    renderScaleGrid();
+  });
 });

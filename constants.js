@@ -1,5 +1,3 @@
-const frets = 22;
-
 const instruments = {
   mandolin: ["G", "D", "A", "E"],
   guitar: ["E", "A", "D", "G", "B", "E"],
@@ -72,7 +70,6 @@ const scaleIntervals = {
 };
 
 export {
-  frets,
   intervalNames,
   instruments,
   chromaticScale,

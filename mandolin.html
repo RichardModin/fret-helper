@@ -10,13 +10,31 @@
         <div id="container">
             <div id="header">
                 <button id="sharpsFlatsToggle" class="floating-button">#/b</button>
-                <label for="instrumentSelect">Instrument: </label>
                 <select id="instrumentSelect"></select>
+                <label for="instrumentSelect"></label>
+                <select id="handednessSelect">
+                    <option value="right" selected>Right-Handed</option>
+                    <option value="left">Left-Handed</option>
+                </select>
+                <label for="handednessSelect"></label>
+                <select id="flipNeckSelect">
+                    <option value="normal" selected>Normal</option>
+                    <option value="flipped">Flipped</option>
+                </select>
+                <label for="flipNeckSelect"></label>
+                <select id="fretCountSelect">
+                    <option value="12">12 Frets</option>
+                    <option value="18">18 Frets</option>
+                    <option value="20">20 Frets</option>
+                    <option value="22" selected>22 Frets</option>
+                    <option value="24">24 Frets</option>
+                </select>
+                <label for="fretCountSelect"></label>
             </div>
             <hr />
             <div id="chordNotes"></div>
             <div id="scaleNotes"></div>
-            <div id="neck" class="sunburst-table"></div>
+            <div id="neck" class="sunburst-table ltr"></div>
             <hr />
             <div class="controls">
                 <div class="chords">
