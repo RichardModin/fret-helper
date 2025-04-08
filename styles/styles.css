@@ -13,7 +13,6 @@ body {
     padding: 20px;
     font-size: 18px;
     text-align: center;
-    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -30,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
     flex: auto;
     background: #000000;
     border: 2px solid #ffffff;
+    color: #ffffff;
     padding: 16px;
     display: inline-flex;
     justify-content: center;
@@ -37,14 +37,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-    color: #ffffff;
     border-radius: 15px;
 }
 
 .sunburst-button.selected {
     transform: scale(1.05);
     transition: all 0.3s ease-in-out;
-    animation: sparkle-button 1.5s infinite;
+    background: #ffffff;
+    border: 2px solid #000000;
+    color: #000000;
 }
 
 .sunburst-button.disabled {
@@ -73,6 +74,9 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+}
+
+.notes-container {
     padding-top: 10px;
 }
 
@@ -166,9 +170,9 @@ select {
     background: none;
     outline: none;
     text-align: center;
-    color: #ffffff;
-    background: #000000;
-    border: 2px solid #ffffff;
+    color: #000000;
+    background: #ffffff;
+    border: 2px solid #000000;
     padding: 16px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
@@ -178,7 +182,7 @@ select {
 }
 
 #container {
-    max-width: 1500px;
+    width: 100%;
     margin: 0 auto;
 }
 
