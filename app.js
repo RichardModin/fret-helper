@@ -2,7 +2,7 @@ import {chromaticScale, instruments, intervalNames, intervals, scaleIntervals} f
 
 let flipped = true
 let handedness = 'right';
-let instrumentNotes = flipped ? ["G", "D", "A", "E"].reverse() : ["G", "D", "A", "E"];
+let instrumentNotes = ["G", "D", "A", "E"].reverse();
 let useSharps = true;
 let activeNotes = [];
 let selectedNote = '';
@@ -278,6 +278,31 @@ function getScale(root, type) {
   return scaleIntervals[type].map(i => chromaticScale[(index + i) % chromaticScale.length]);
 }
 
+function handleHandednessChange(event) {
+  const neck = document.getElementById('neck');
+  if (event.target.value === 'left') {
+    handedness = 'left';
+    neck.classList.remove('ltr');
+    neck.classList.add('rtl');
+  } else {
+    handedness = 'right';
+    neck.classList.remove('rtl');
+    neck.classList.add('ltr');
+  }
+  renderScaleGrid();
+}
+
+function handleNeckFlip(event) {
+  flipped = event.target.value !== 'flipped';
+  instrumentNotes = instrumentNotes.reverse();
+  renderScaleGrid();
+}
+
+function handleFretCountChange(event) {
+  frets = parseInt(event.target.value, 10);
+  renderScaleGrid();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   populateInstrumentSelect();
   renderScaleGrid();
@@ -285,29 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('sharpsFlatsToggle').addEventListener('click', toggleSharpsFlats);
   document.getElementById('instrumentSelect').addEventListener('change', handleInstrumentChange);
-
-  document.getElementById('handednessSelect').addEventListener('change', (event) => {
-    const neck = document.getElementById('neck');
-    if (event.target.value === 'left') {
-      handedness = 'left';
-      neck.classList.remove('ltr');
-      neck.classList.add('rtl');
-    } else {
-      handedness = 'right';
-      neck.classList.remove('rtl');
-      neck.classList.add('ltr');
-    }
-    renderScaleGrid();
-  });
-
-  document.getElementById('flipNeckSelect').addEventListener('change', (event) => {
-    flipped = event.target.value !== 'flipped';
-    instrumentNotes = instrumentNotes.reverse();
-    renderScaleGrid();
-  });
-
-  document.getElementById('fretCountSelect').addEventListener('change', (event) => {
-    frets = parseInt(event.target.value, 10);
-    renderScaleGrid();
-  });
+  document.getElementById('handednessSelect').addEventListener('change', handleHandednessChange);
+  document.getElementById('flipNeckSelect').addEventListener('change', handleNeckFlip);
+  document.getElementById('fretCountSelect').addEventListener('change', handleFretCountChange);
 });
