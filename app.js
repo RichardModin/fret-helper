@@ -1,309 +1,136 @@
-import {chromaticScale, instruments, intervalNames, intervals, scaleIntervals} from './constants.js';
+import { chromaticScale, instruments, intervalNames, intervals, scaleIntervals } from './app/constants.js';
+import NoteUtils from "./app/NoteUtils.js";
+import NeckRenderer from "./app/NeckRenderer.js";
 
-let flipped = true
-let handedness = 'right';
-let instrumentNotes = ["G", "D", "A", "E"].reverse();
-let useSharps = true;
-let activeNotes = [];
-let selectedNote = '';
-let selectedChord = '';
-let selectedScale = '';
-let frets = 22;
-
-function toggleSharpsFlats() {
-  useSharps = !useSharps;
-  document.querySelectorAll('span.note').forEach(span => {
-    const actualNote = span.getAttribute('data-actual-note');
-    const parent = span.parentElement;
-    span.textContent = getNoteRepresentation(actualNote);
-    if (['chordNotes', 'scaleNotes'].includes(parent.id)) {
-      const noteIndex = getNoteIndex(actualNote);
-      const selectedNoteIndex = getNoteIndex(selectedNote);
-      if (selectedNoteIndex !== -1) {
-        const interval = (noteIndex - selectedNoteIndex + chromaticScale.length) % chromaticScale.length;
-        const sup = document.createElement('sup');
-        sup.textContent = intervalNames[interval];
-        span.appendChild(sup);
-      }
-    }
-  });
-}
-
-function updateSelectedButton(selectedButton) {
-  document.querySelectorAll('.sunburst-button').forEach(button => {
-    button.classList.remove('selected');
-  });
-  selectedButton.classList.add('selected');
-}
-
-function getNoteRepresentation(note) {
-  if (!note) return note;
-  const noteParts = note?.split('/');
-  return noteParts.length > 1 ? (useSharps ? noteParts[0] : noteParts[1]) : note;
-}
-
-function createScaleGrid(scale) {
-  let grid = [];
-  for (let row = 0; row < scale.length; row++) {
-    grid.push([...scale[row]]);
+class MusicApp {
+  constructor() {
+    this.flipped = true;
+    this.handedness = 'right';
+    this.instrumentNotes = ["G", "D", "A", "E"].reverse();
+    this.frets = 22;
+    this.activeNotes = [];
+    this.selectedNote = '';
+    this.selectedChord = '';
+    this.selectedScale = '';
+    this.renderer = new NeckRenderer(this);
   }
-  return grid;
-}
 
-function transformScale(scale) {
-  return scale.map(row =>
-    row.map(note => ({
-      name: note,
-      active: activeNotes.includes(note),
-    }))
-  );
-}
+  handleNoteClick(name) {
+    this.selectedNote = name;
+    this.activeNotes = [];
 
-function updateActiveNotes(scale, notes) {
-  activeNotes.length = 0;
-  activeNotes.push(...notes);
-  const title = scale ? document.getElementById('scaleNotes') : document.getElementById('chordNotes');
-  title.innerHTML = '';
-  const titleForEmpty = scale ? document.getElementById('chordNotes') : document.getElementById('scaleNotes');
-  titleForEmpty.innerHTML = '';
-  [...notes].forEach((note) => {
-    const span = document.createElement('span');
-    span.classList.add('note');
-    span.setAttribute('data-actual-note', note);
-    span.textContent = getNoteRepresentation(note);
-    const noteIndex = getNoteIndex(note);
-    const selectedNoteIndex = getNoteIndex(selectedNote);
-    if (selectedNoteIndex !== -1) {
-      const interval = (noteIndex - selectedNoteIndex + chromaticScale.length) % chromaticScale.length;
+    document.querySelectorAll('.sunburst-button.disabled').forEach(btn => btn.classList.remove('disabled'));
+
+    if (this.selectedScale) {
+      this.activeNotes = NoteUtils.getScale(name, this.selectedScale);
+      this.updateNoteDisplay(true);
+    } else if (this.selectedChord) {
+      this.activeNotes = NoteUtils.getChord(name, this.selectedChord);
+      this.updateNoteDisplay(false);
+    } else {
+      this.activeNotes = [name];
+      this.updateNoteDisplay(false);
+    }
+
+    this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+  }
+
+  updateNoteDisplay(isScale) {
+    const main = isScale ? 'scaleNotes' : 'chordNotes';
+    const other = isScale ? 'chordNotes' : 'scaleNotes';
+
+    document.getElementById(main).innerHTML = '';
+    document.getElementById(other).innerHTML = '';
+
+    this.activeNotes.forEach(note => {
+      const span = document.createElement('span');
+      span.classList.add('note');
+      span.setAttribute('data-actual-note', note);
+      span.textContent = NoteUtils.getNoteRepresentation(note);
+      const interval = (NoteUtils.getNoteIndex(note) - NoteUtils.getNoteIndex(this.selectedNote) + chromaticScale.length) % chromaticScale.length;
       span.classList.add('note-interval', `interval-${interval}`);
       const sup = document.createElement('sup');
       sup.textContent = intervalNames[interval];
       span.appendChild(sup);
-    }
-    title.appendChild(span);
-  });
-}
-
-function generateMusicalScale(startingNotes, frets) {
-  const musicalScale = [];
-
-  startingNotes.forEach(startNote => {
-    const startIndex = chromaticScale.indexOf(startNote);
-    const scale = [];
-    for (let i = 0; i < frets + 1; i++) {
-      scale.push(chromaticScale[(startIndex + i) % chromaticScale.length]);
-    }
-    musicalScale.push(scale);
-  });
-
-  return musicalScale;
-}
-
-function renderScaleGrid() {
-  const musicalScale = generateMusicalScale(instrumentNotes, frets);
-  const container = document.getElementById('neck');
-  container.innerHTML = '';
-  const scaleGrid = createScaleGrid(transformScale(musicalScale));
-
-  if (handedness === 'left') {
-    scaleGrid.forEach(row => {
-      row.reverse();
+      document.getElementById(main).appendChild(span);
     });
   }
 
-  const topRow = createTopRow();
-  if (flipped === true) {
-    container.appendChild(topRow);
+  populateInstrumentSelect() {
+    const select = document.getElementById('instrumentSelect');
+    select.innerHTML = '';
+    for (const name in instruments) {
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name.charAt(0).toUpperCase() + name.slice(1).replace(/([A-Z])/g, ' $1');
+      select.appendChild(option);
+    }
   }
 
-  scaleGrid.forEach(row => {
-    const rowDiv = document.createElement('div');
-    rowDiv.classList.add('row');
-    row.forEach(({name, active}, index) => {
-      const cell = document.createElement('div');
-      const span = document.createElement('span');
-      span.classList.add('note');
-      span.setAttribute('data-actual-note', name);
-      span.textContent = getNoteRepresentation(name);
-      cell.appendChild(span);
-      const noteIndex = getNoteIndex(name);
-      const selectedNoteIndex = getNoteIndex(selectedNote);
-      if (selectedNoteIndex !== -1) {
-        const interval = (noteIndex - selectedNoteIndex + chromaticScale.length) % chromaticScale.length;
-        cell.classList.add(`interval-${interval}`);
-      }
-      cell.classList.add('cell');
-      if (active) {
-        cell.classList.add('active');
-      }
-      if (index === 0) {
-        cell.classList.add('open-note');
-      }
-      cell.addEventListener('click', () => {
-        selectedNote = name;
-        document.querySelectorAll('.sunburst-button.disabled').forEach(button => {
-          button.classList.remove('disabled');
-        });
-        activeNotes.length = 0;
-        if (selectedScale !== '') {
-          const notes = getScale(name, selectedScale);
-          updateActiveNotes(true, notes);
-        } else if (selectedChord !== '') {
-          const notes = getChord(name, selectedChord);
-          updateActiveNotes(false, notes);
-        } else {
-          updateActiveNotes(false, [name]);
-        }
-        //updateSelectedNoteSpans(name);
-        renderScaleGrid();
+  generateButtons() {
+    const chordsContainer = document.getElementById('chordsContainer');
+    const scalesContainer = document.getElementById('scalesContainer');
+
+    const createBtn = (key, isScale) => {
+      const button = document.createElement('button');
+      button.textContent = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z0-9])/g, ' $1');
+      button.classList.add('sunburst-button', 'disabled');
+      button.addEventListener('click', () => {
+        this.activeNotes = isScale ? NoteUtils.getScale(this.selectedNote, key) : NoteUtils.getChord(this.selectedNote, key);
+        this.selectedScale = isScale ? key : '';
+        this.selectedChord = isScale ? '' : key;
+        this.updateNoteDisplay(isScale);
+        this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+        this.updateSelectedButton(button);
       });
-      rowDiv.appendChild(cell);
+      return button;
+    };
+
+    Object.keys(intervals).forEach(key => chordsContainer.appendChild(createBtn(key, false)));
+    Object.keys(scaleIntervals).forEach(key => scalesContainer.appendChild(createBtn(key, true)));
+  }
+
+  updateSelectedButton(button) {
+    document.querySelectorAll('.sunburst-button').forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+  }
+
+  initEventListeners() {
+    document.getElementById('sharpsFlatsToggle').addEventListener('click', () => {
+      NoteUtils.toggleSharpsFlats(NoteUtils.getNoteIndex(this.selectedNote));
     });
-    container.appendChild(rowDiv);
-  });
-
-  if (flipped === false) {
-    container.appendChild(topRow);
-  }
-
-  document.querySelectorAll('.sunburst-table .cell.active').forEach((cell) => {
-    const randomValue = new Uint32Array(1);
-    window.crypto.getRandomValues(randomValue);
-    cell.style.setProperty('--animation-order', String(randomValue[0] / (2 ** 32)));
-  });
-}
-
-function createButton(label) {
-  const button = document.createElement('button');
-  button.textContent = label.charAt(0).toUpperCase() + label.slice(1).replace(/([A-Z0-9])/g, ' $1');
-  button.classList.add('sunburst-button', 'disabled');
-  return button;
-}
-
-function generateButtons() {
-  const chordsContainer = document.getElementById('chordsContainer');
-  const scalesContainer = document.getElementById('scalesContainer');
-
-  Object.keys(intervals).forEach(key => {
-    const button = createButton(key);
-    button.addEventListener('click', () => {
-      const notes = getChord(selectedNote, key);
-      updateActiveNotes(false, notes);
-      updateSelectedButton(button);
-      selectedChord = key;
-      selectedScale = '';
-      renderScaleGrid();
+    document.getElementById('instrumentSelect').addEventListener('change', e => {
+      this.instrumentNotes = instruments[e.target.value].slice().reverse();
+      this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
     });
-    chordsContainer.appendChild(button);
-  });
 
-  Object.keys(scaleIntervals).forEach(key => {
-    const button = createButton(key);
-    button.addEventListener('click', () => {
-      const notes = getScale(selectedNote, key);
-      updateActiveNotes(true, notes);
-      updateSelectedButton(button);
-      selectedScale = key;
-      selectedChord = '';
-      renderScaleGrid();
+    document.getElementById('handednessSelect').addEventListener('change', e => {
+      this.handedness = e.target.value;
+      const neck = document.getElementById('neck');
+      neck.classList.toggle('rtl', this.handedness === 'left');
+      neck.classList.toggle('ltr', this.handedness === 'right');
+      this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
     });
-    scalesContainer.appendChild(button);
-  });
-}
 
-function createTopRow() {
-  const topRow = document.createElement('div');
-  topRow.classList.add('row');
-  const cells = [];
-  for (let i = 0; i <= frets; i++) {
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
-    if (i === 0) cell.classList.add('no-border');
-    cell.textContent = [3, 5, 7, 9, 15, 17, 19, 21].includes(i) ? '•' : [12, 24].includes(i) ? '••' : '';
-    cells.push(cell);
+    document.getElementById('flipNeckSelect').addEventListener('change', e => {
+      this.flipped = e.target.value !== 'flipped';
+      this.instrumentNotes.reverse();
+      this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+    });
+
+    document.getElementById('fretCountSelect').addEventListener('change', e => {
+      this.frets = parseInt(e.target.value, 10);
+      this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+    });
   }
 
-  if (handedness === 'left') {
-    cells.reverse();
-  }
-
-  cells.forEach(cell => {
-    topRow.appendChild(cell);
-  })
-
-  return topRow;
-}
-
-function populateInstrumentSelect() {
-  const instrumentSelect = document.getElementById('instrumentSelect');
-  instrumentSelect.innerHTML = '';
-
-  for (const instrument in instruments) {
-    const option = document.createElement('option');
-    option.value = instrument;
-    option.textContent = instrument.charAt(0).toUpperCase() + instrument.slice(1).replace(/([A-Z])/g, ' $1');
-    instrumentSelect.appendChild(option);
+  start() {
+    this.populateInstrumentSelect();
+    this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+    this.generateButtons();
+    this.initEventListeners();
   }
 }
 
-function handleInstrumentChange(event) {
-  instrumentNotes = instruments[event.target.value].reverse();
-  renderScaleGrid();
-}
-
-
-function getNoteIndex(note) {
-  return chromaticScale.indexOf(note);
-}
-
-function getChord(root, type) {
-  const index = getNoteIndex(root);
-  if (index === -1) return null;
-  if (!intervals[type]) return null;
-  return intervals[type].map(i => chromaticScale[(index + i) % chromaticScale.length]);
-}
-
-
-function getScale(root, type) {
-  const index = getNoteIndex(root);
-  if (index === -1) return null;
-  if (!scaleIntervals[type]) return null;
-  return scaleIntervals[type].map(i => chromaticScale[(index + i) % chromaticScale.length]);
-}
-
-function handleHandednessChange(event) {
-  const neck = document.getElementById('neck');
-  if (event.target.value === 'left') {
-    handedness = 'left';
-    neck.classList.remove('ltr');
-    neck.classList.add('rtl');
-  } else {
-    handedness = 'right';
-    neck.classList.remove('rtl');
-    neck.classList.add('ltr');
-  }
-  renderScaleGrid();
-}
-
-function handleNeckFlip(event) {
-  flipped = event.target.value !== 'flipped';
-  instrumentNotes = instrumentNotes.reverse();
-  renderScaleGrid();
-}
-
-function handleFretCountChange(event) {
-  frets = parseInt(event.target.value, 10);
-  renderScaleGrid();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populateInstrumentSelect();
-  renderScaleGrid();
-  generateButtons();
-
-  document.getElementById('sharpsFlatsToggle').addEventListener('click', toggleSharpsFlats);
-  document.getElementById('instrumentSelect').addEventListener('change', handleInstrumentChange);
-  document.getElementById('handednessSelect').addEventListener('change', handleHandednessChange);
-  document.getElementById('flipNeckSelect').addEventListener('change', handleNeckFlip);
-  document.getElementById('fretCountSelect').addEventListener('change', handleFretCountChange);
-});
+const app = new MusicApp();
+document.addEventListener('DOMContentLoaded', () => app.start());
