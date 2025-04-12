@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--foreground-primary);
 }
 
-#chordNotes > span.note > sup, #scaleNotes > span.note > sup {
+#chordNotes > span.note > sup, #scaleNotes > span.note > sup, #keyChords > span.note > sup {
     font-size: 0.75rem;
     padding-left: 2px;
 }
@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
 }
 
-#chordNotes, #scaleNotes {
+#chordNotes, #scaleNotes, #keyChords {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

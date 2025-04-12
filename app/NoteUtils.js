@@ -1,4 +1,4 @@
-import {chromaticScale, intervalNames, intervals, scaleIntervals} from "./constants.js";
+import {chromaticScale, intervalNames, intervals, scaleIntervals, modes} from "./constants.js";
 
 /**
  * NoteUtils class to manage musical notes and their representations.
@@ -54,20 +54,15 @@ class NoteUtils {
    * Update the display of notes in the sunburst UI to be sharps or flats.
    * @param selectedNoteIndex
    */
-  static toggleSharpsFlats(selectedNoteIndex) {
+  static toggleSharpsFlats() {
     NoteUtils.useSharps = !NoteUtils.useSharps;
     document.querySelectorAll('span.note').forEach(span => {
       const actualNote = span.getAttribute('data-actual-note');
-      const parent = span.parentElement;
-      span.textContent = NoteUtils.getNoteRepresentation(actualNote);
-      if (['chordNotes', 'scaleNotes'].includes(parent.id)) {
-        const noteIndex = NoteUtils.getNoteIndex(actualNote);
-        if (selectedNoteIndex !== -1) {
-          const interval = (noteIndex - selectedNoteIndex + chromaticScale.length) % chromaticScale.length;
-          const sup = document.createElement('sup');
-          sup.textContent = intervalNames[interval];
-          span.appendChild(sup);
-        }
+      const newNote = NoteUtils.getNoteRepresentation(actualNote)
+      const sup = span.querySelector('sup');
+      span.textContent = newNote;
+      if (sup) {
+        span.appendChild(sup);
       }
     });
   }

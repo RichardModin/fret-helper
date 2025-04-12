@@ -1,4 +1,4 @@
-import { chromaticScale, instruments, intervalNames, intervals, scaleIntervals } from './app/constants.js';
+import { chromaticScale, instruments, intervalNames, intervals, scaleIntervals, modes } from './app/constants.js';
 import NoteUtils from "./app/NoteUtils.js";
 import NeckRenderer from "./app/NeckRenderer.js";
 
@@ -97,10 +97,23 @@ class MusicApp {
       button.textContent = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z0-9])/g, ' $1');
       button.classList.add('sunburst-button', 'disabled');
       button.addEventListener('click', () => {
-        this.activeNotes = isScale ? NoteUtils.getScale(this.selectedNote, key) : NoteUtils.getChord(this.selectedNote, key);
-        this.selectedScale = isScale ? key : '';
-        this.selectedChord = isScale ? '' : key;
-        this.updateNoteDisplay(isScale);
+        if (isScale) {
+          if (modes[key]) {
+            this.generateMode(key, this.selectedNote); // Only handle Major and Minor scales
+          } else {
+            this.emptyKeyChords();
+          }
+          this.activeNotes = NoteUtils.getScale(this.selectedNote, key);
+          this.selectedScale = key;
+          this.selectedChord = '';
+          this.updateNoteDisplay(true);
+        } else {
+          this.activeNotes = NoteUtils.getChord(this.selectedNote, key);
+          this.selectedScale = '';
+          this.selectedChord = key;
+          this.updateNoteDisplay(false);
+          this.emptyKeyChords();
+        }
         this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
         this.updateSelectedButton(button);
       });
@@ -109,6 +122,43 @@ class MusicApp {
 
     Object.keys(intervals).forEach(key => chordsContainer.appendChild(createBtn(key, false)));
     Object.keys(scaleIntervals).forEach(key => scalesContainer.appendChild(createBtn(key, true)));
+  }
+
+   /**
+   * Generate chords in the key for the selected scale and root note.
+   * @param scaleType - The type of scale (e.g., 'major', 'minor').
+   * @param rootNote - The root note of the scale (e.g., 'C', 'D').
+   */
+   generateMode(scaleType, rootNote) {
+    const keyChordsContainer = document.getElementById('keyChords');
+    keyChordsContainer.innerHTML = '';
+
+    const scale = scaleIntervals[scaleType];
+    const chords = modes[scaleType];
+
+    if (!scale || !chords) {
+      return;
+    }
+
+    // Generate the notes in the scale
+    const scaleNotes = scale.map(interval => {
+      const noteIndex = (chromaticScale.indexOf(rootNote) + interval) % chromaticScale.length;
+      return chromaticScale[noteIndex];
+    });
+
+    // Create spans for each chord in the scale
+    scaleNotes.forEach((note, index) => {
+      const span = document.createElement('span');
+      span.classList.add('note');
+      span.setAttribute('data-actual-note', note);
+      span.textContent = NoteUtils.getNoteRepresentation(note);
+      const interval = (NoteUtils.getNoteIndex(note) - NoteUtils.getNoteIndex(this.selectedNote) + chromaticScale.length) % chromaticScale.length;
+      span.classList.add('note-interval', `interval-${interval}`);
+      const sup = document.createElement('sup');
+      sup.textContent = chords[index];
+      span.appendChild(sup);
+      keyChordsContainer.appendChild(span);
+    });
   }
 
   /**
@@ -121,11 +171,19 @@ class MusicApp {
   }
 
   /**
+   * Clear the key chords display.
+   */
+  emptyKeyChords() {
+    const keyChordsContainer = document.getElementById('keyChords');
+    keyChordsContainer.innerHTML = ''; // Clear existing content
+  }
+
+  /**
    * Initialize event listeners for various UI elements.
    */
   initEventListeners() {
     document.getElementById('sharpsFlatsToggle').addEventListener('click', () => {
-      NoteUtils.toggleSharpsFlats(NoteUtils.getNoteIndex(this.selectedNote));
+      NoteUtils.toggleSharpsFlats();
     });
     document.getElementById('instrumentSelect').addEventListener('change', e => {
       this.instrumentNotes = instruments[e.target.value].slice().reverse();

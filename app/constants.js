@@ -69,10 +69,27 @@ const scaleIntervals = {
   chromaticScale: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 };
 
+const modes = {
+  major: ["I", "ii", "iii", "IV", "V", "vi", "vii°"],
+  minor: ["i", "ii°", "III", "iv", "v", "VI", "VII"],
+  harmonicMinor: ["i", "ii°", "III+", "iv", "V", "VI", "vii°"],
+  melodicMinor: ["i", "ii", "III+", "IV", "V", "vi°", "vii°"],
+  pentatonicMajor: ["I", "ii", "IV", "V", "vi"],
+  pentatonicMinor: ["i", "III", "iv", "v", "VII"],
+  blues: ["I", "IV", "V", "bVII"],
+  dorian: ["i", "ii", "III", "IV", "v", "vi°", "VII"],
+  phrygian: ["i", "bII", "III", "iv", "v", "bVI", "bVII"],
+  lydian: ["I", "II", "iii", "iv", "V", "vi", "vii°"],
+  mixolydian: ["I", "ii", "iii", "IV", "v", "vi°", "bVII"],
+  aeolian: ["i", "ii°", "III", "iv", "v", "VI", "VII"],
+  locrian: ["i°", "bII", "III", "iv", "v", "bVI", "bVII"],
+};
+
 export {
   intervalNames,
   instruments,
   chromaticScale,
   intervals,
-  scaleIntervals
+  scaleIntervals,
+  modes
 }
