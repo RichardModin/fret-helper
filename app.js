@@ -35,12 +35,19 @@ class MusicApp {
     if (this.selectedScale) {
       this.activeNotes = NoteUtils.getScale(name, this.selectedScale);
       this.updateNoteDisplay(true);
+      if (modes[this.selectedScale]) {
+        this.generateMode(this.selectedScale, this.selectedNote); // Only handle Major and Minor scales
+      } else {
+        this.emptyKeyChords();
+      }
     } else if (this.selectedChord) {
       this.activeNotes = NoteUtils.getChord(name, this.selectedChord);
       this.updateNoteDisplay(false);
+      this.emptyKeyChords();
     } else {
       this.activeNotes = [name];
       this.updateNoteDisplay(false);
+      this.emptyKeyChords();
     }
 
     this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
@@ -58,17 +65,28 @@ class MusicApp {
     document.getElementById(other).innerHTML = '';
 
     this.activeNotes.forEach(note => {
-      const span = document.createElement('span');
-      span.classList.add('note');
-      span.setAttribute('data-actual-note', note);
-      span.textContent = NoteUtils.getNoteRepresentation(note);
       const interval = (NoteUtils.getNoteIndex(note) - NoteUtils.getNoteIndex(this.selectedNote) + chromaticScale.length) % chromaticScale.length;
-      span.classList.add('note-interval', `interval-${interval}`);
+      const span = this.createNoteSpan(note, interval);
       const sup = document.createElement('sup');
       sup.textContent = intervalNames[interval];
       span.appendChild(sup);
       document.getElementById(main).appendChild(span);
     });
+  }
+
+  /**
+   * Create a span element for a note with its interval.
+   * @param note
+   * @param interval
+   * @returns {HTMLSpanElement}
+   */
+  createNoteSpan(note, interval) {
+    const span = document.createElement('span');
+    span.classList.add('note');
+    span.setAttribute('data-actual-note', note);
+    span.textContent = NoteUtils.getNoteRepresentation(note);
+    span.classList.add('note-interval', `interval-${interval}`)
+    return span;
   }
 
   /**
@@ -148,12 +166,8 @@ class MusicApp {
 
     // Create spans for each chord in the scale
     scaleNotes.forEach((note, index) => {
-      const span = document.createElement('span');
-      span.classList.add('note');
-      span.setAttribute('data-actual-note', note);
-      span.textContent = NoteUtils.getNoteRepresentation(note);
       const interval = (NoteUtils.getNoteIndex(note) - NoteUtils.getNoteIndex(this.selectedNote) + chromaticScale.length) % chromaticScale.length;
-      span.classList.add('note-interval', `interval-${interval}`);
+      const span = this.createNoteSpan(note, interval);
       const sup = document.createElement('sup');
       sup.textContent = chords[index];
       span.appendChild(sup);
