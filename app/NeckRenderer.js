@@ -27,7 +27,7 @@ class NeckRenderer {
       const cell = document.createElement('div');
       cell.classList.add('cell');
       if (i === 0) cell.classList.add('no-border');
-      cell.textContent = [3, 5, 7, 9, 15, 17, 19, 21].includes(i) ? '•' : [12, 24].includes(i) ? '••' : '';
+      cell.textContent = [3, 5, 7, this.app.dotOn, 15, 17, 19, 21].includes(i) ? '•' : [12, 24].includes(i) ? '••' : '';
       cells.push(cell);
     }
 

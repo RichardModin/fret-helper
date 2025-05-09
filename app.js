@@ -20,6 +20,7 @@ class MusicApp {
     this.selectedChord = '';
     this.selectedScale = '';
     this.renderer = new NeckRenderer(this);
+    this.dotOn = 9;
   }
 
   /**
@@ -220,6 +221,11 @@ class MusicApp {
 
     document.getElementById('fretCountSelect').addEventListener('change', e => {
       this.frets = parseInt(e.target.value, 10);
+      this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+    });
+
+    document.getElementById('dotPositionSelect').addEventListener('change', (event) => {
+      this.dotOn = parseInt(event.target.value, 10);
       this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
     });
   }
