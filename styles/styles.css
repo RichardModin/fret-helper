@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .sunburst-table .row {
