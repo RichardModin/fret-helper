@@ -10,18 +10,31 @@
         <div id="container">
             <div id="header">
                 <button id="sharpsFlatsToggle" class="floating-button">#/b</button>
-                <select id="instrumentSelect"></select>
                 <label for="instrumentSelect"></label>
+                <select id="instrumentSelect">
+                    <option value="mandolin">Mandolin</option>
+                    <option value="guitar">Guitar</option>
+                    <option value="bass">Bass</option>
+                    <option value="ukulele">Ukulele</option>
+                    <option value="banjo">Banjo</option>
+                    <option value="sevenStringGuitar">Seven String Guitar</option>
+                    <option value="fiveStringBass">Five String Bass</option>
+                    <option value="openCGuitar">Open C Guitar</option>
+                    <option value="openDGuitar">Open D Guitar</option>
+                    <option value="openEGuitar">Open E Guitar</option>
+                    <option value="openGGuitar">Open G Guitar</option>
+                </select>
+                <label for="handednessSelect"></label>
                 <select id="handednessSelect">
                     <option value="right" selected>Right-Handed</option>
                     <option value="left">Left-Handed</option>
                 </select>
-                <label for="handednessSelect"></label>
+                <label for="flipNeckSelect"></label>
                 <select id="flipNeckSelect">
                     <option value="normal" selected>Not Flipped</option>
                     <option value="flipped">Flipped</option>
                 </select>
-                <label for="flipNeckSelect"></label>
+                <label for="fretCountSelect"></label>
                 <select id="fretCountSelect">
                     <option value="12">12 Frets</option>
                     <option value="18">18 Frets</option>
@@ -29,11 +42,59 @@
                     <option value="22" selected>22 Frets</option>
                     <option value="24">24 Frets</option>
                 </select>
+                <label for="dotPositionSelect"></label>
                 <select id="dotPositionSelect">
                     <option value="9">Dot on 9</option>
                     <option value="10">Dot on 10</option>
                 </select>
-                <label for="fretCountSelect"></label>
+            </div>
+            <hr />
+            <div class="controls">
+                <div class="chords">
+                    <span>Chords</span>
+                    <div id="chordsContainer">
+                        <button data-value="major" class="chord-button sunburst-button disabled">Major</button>
+                        <button data-value="minor" class="chord-button sunburst-button disabled">Minor</button>
+                        <button data-value="major7" class="chord-button sunburst-button disabled">Major 7</button>
+                        <button data-value="minor7" class="chord-button sunburst-button disabled">Minor 7</button>
+                        <button data-value="dominant7" class="chord-button sunburst-button disabled">Dominant 7</button>
+                        <button data-value="major9" class="chord-button sunburst-button disabled">Major 9</button>
+                        <button data-value="minor9" class="chord-button sunburst-button disabled">Minor 9</button>
+                        <button data-value="dominant9" class="chord-button sunburst-button disabled">Dominant 9</button>
+                        <button data-value="diminished" class="chord-button sunburst-button disabled">Diminished</button>
+                        <button data-value="diminished7" class="chord-button sunburst-button disabled">Diminished 7</button>
+                        <button data-value="halfDiminished7" class="chord-button sunburst-button disabled">Half Diminished 7</button>
+                        <button data-value="augmented" class="chord-button sunburst-button disabled">Augmented</button>
+                        <button data-value="augmented7" class="chord-button sunburst-button disabled">Augmented 7</button>
+                        <button data-value="sus2" class="chord-button sunburst-button disabled">Sus 2</button>
+                        <button data-value="sus4" class="chord-button sunburst-button disabled">Sus 4</button>
+                        <button data-value="sixth" class="chord-button sunburst-button disabled">Sixth</button>
+                        <button data-value="minor6" class="chord-button sunburst-button disabled">Minor 6</button>
+                        <button data-value="eleventh" class="chord-button sunburst-button disabled">Eleventh</button>
+                        <button data-value="thirteenth" class="chord-button sunburst-button disabled">Thirteenth</button>
+                    </div>
+                </div>
+                <div class="scales">
+                    <span>Scales</span>
+                    <div id="scalesContainer">
+                        <button data-value="major" class="scale-button sunburst-button disabled">Major</button>
+                        <button data-value="minor" class="scale-button sunburst-button disabled">Minor</button>
+                        <button data-value="harmonicMinor" class="scale-button sunburst-button disabled">Harmonic Minor</button>
+                        <button data-value="melodicMinor" class="scale-button sunburst-button disabled">Melodic Minor</button>
+                        <button data-value="pentatonicMajor" class="scale-button sunburst-button disabled">Pentatonic Major</button>
+                        <button data-value="pentatonicMinor" class="scale-button sunburst-button disabled">Pentatonic Minor</button>
+                        <button data-value="blues" class="scale-button sunburst-button disabled">Blues</button>
+                        <button data-value="dorian" class="scale-button sunburst-button disabled">Dorian</button>
+                        <button data-value="phrygian" class="scale-button sunburst-button disabled">Phrygian</button>
+                        <button data-value="lydian" class="scale-button sunburst-button disabled">Lydian</button>
+                        <button data-value="mixolydian" class="scale-button sunburst-button disabled">Mixolydian</button>
+                        <button data-value="aeolian" class="scale-button sunburst-button disabled">Aeolian</button>
+                        <button data-value="locrian" class="scale-button sunburst-button disabled">Locrian</button>
+                        <button data-value="halfWhole" class="scale-button sunburst-button disabled">Half Whole</button>
+                        <button data-value="wholeHalf" class="scale-button sunburst-button disabled">Whole Half</button>
+                        <button data-value="chromaticScale" class="scale-button sunburst-button disabled">Chromatic Scale</button>
+                    </div>
+                </div>
             </div>
             <hr />
             <div class="notes-container">
@@ -42,17 +103,6 @@
                 <div id="keyChords"></div>
             </div>
             <div id="neck" class="sunburst-table ltr"></div>
-            <hr />
-            <div class="controls">
-                <div class="chords">
-                    <span>Chords</span>
-                    <div id="chordsContainer"></div>
-                </div>
-                <div class="scales">
-                    <span>Scales</span>
-                    <div id="scalesContainer"></div>
-                </div>
-            </div>
         </div>
         <script type="module" src="app.js"></script>
     </body>

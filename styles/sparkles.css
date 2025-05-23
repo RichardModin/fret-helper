@@ -1,212 +1,47 @@
-@keyframes sparkle-button {
-    0%, 100% {
-        box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff;
-    }
-    50% {
-        box-shadow: 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #ffffff;
-    }
-}
-
-@keyframes sparkle-0 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-0), 0 0 10px var(--sparkle-color-0-1), 0 0 15px var(--sparkle-color-0-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-0), 0 0 15px var(--sparkle-color-0-1), 0 0 20px var(--sparkle-color-0-2);
-    }
-}
-
-@keyframes sparkle-1 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-1), 0 0 10px var(--sparkle-color-1-1), 0 0 15px var(--sparkle-color-1-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-1), 0 0 15px var(--sparkle-color-1-1), 0 0 20px var(--sparkle-color-1-2);
-    }
-}
-
-@keyframes sparkle-2 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-2), 0 0 10px var(--sparkle-color-2-1), 0 0 15px var(--sparkle-color-2-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-2), 0 0 15px var(--sparkle-color-2-1), 0 0 20px var(--sparkle-color-2-2);
-    }
-}
-
-@keyframes sparkle-3 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-3), 0 0 10px var(--sparkle-color-3-1), 0 0 15px var(--sparkle-color-3-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-3), 0 0 15px var(--sparkle-color-3-1), 0 0 20px var(--sparkle-color-3-2);
-    }
-}
-
-@keyframes sparkle-4 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-4), 0 0 10px var(--sparkle-color-4-1), 0 0 15px var(--sparkle-color-4-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-4), 0 0 15px var(--sparkle-color-4-1), 0 0 20px var(--sparkle-color-4-2);
-    }
-}
-
-@keyframes sparkle-5 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-5), 0 0 10px var(--sparkle-color-5-1), 0 0 15px var(--sparkle-color-5-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-5), 0 0 15px var(--sparkle-color-5-1), 0 0 20px var(--sparkle-color-5-2);
-    }
-}
-
-@keyframes sparkle-6 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-6), 0 0 10px var(--sparkle-color-6-1), 0 0 15px var(--sparkle-color-6-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-6), 0 0 15px var(--sparkle-color-6-1), 0 0 20px var(--sparkle-color-6-2);
-    }
-}
-
-@keyframes sparkle-7 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-7), 0 0 10px var(--sparkle-color-7-1), 0 0 15px var(--sparkle-color-7-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-7), 0 0 15px var(--sparkle-color-7-1), 0 0 20px var(--sparkle-color-7-2);
-    }
-}
-
-@keyframes sparkle-8 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-8), 0 0 10px var(--sparkle-color-8-1), 0 0 15px var(--sparkle-color-8-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-8), 0 0 15px var(--sparkle-color-8-1), 0 0 20px var(--sparkle-color-8-2);
-    }
-}
-
-@keyframes sparkle-9 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-9), 0 0 10px var(--sparkle-color-9-1), 0 0 15px var(--sparkle-color-9-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-9), 0 0 15px var(--sparkle-color-9-1), 0 0 20px var(--sparkle-color-9-2);
-    }
-}
-
-@keyframes sparkle-10 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-10), 0 0 10px var(--sparkle-color-10-1), 0 0 15px var(--sparkle-color-10-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-10), 0 0 15px var(--sparkle-color-10-1), 0 0 20px var(--sparkle-color-10-2);
-    }
-}
-
-@keyframes sparkle-11 {
-    0%, 100% {
-        box-shadow: 0 0 5px var(--sparkle-color-11), 0 0 10px var(--sparkle-color-11-1), 0 0 15px var(--sparkle-color-11-2);
-    }
-    50% {
-        box-shadow: 0 0 10px var(--sparkle-color-11), 0 0 15px var(--sparkle-color-11-1), 0 0 20px var(--sparkle-color-11-2);
-    }
-}
-
 .sunburst-table .cell.active.interval-0, .note.interval-0 {
     background-color: var(--sparkle-color-0-background);
-    animation: sparkle-0 1.5s infinite;
-    animation-delay: calc(0.8605118624400347 * 0.1s);
-    animation-duration: calc(1.5s + 0.8605118624400347 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-1, .note.interval-1 {
     background-color: var(--sparkle-color-1-background);
-    animation: sparkle-1 1.5s infinite;
-    animation-delay: calc(0.49869653047062457 * 0.1s);
-    animation-duration: calc(1.5s + 0.49869653047062457 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-2, .note.interval-2 {
     background-color: var(--sparkle-color-2-background);
-    animation: sparkle-2 1.5s infinite;
-    animation-delay: calc(0.05411811824887991 * 0.1s);
-    animation-duration: calc(1.5s + 0.05411811824887991 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-3, .note.interval-3 {
     background-color: var(--sparkle-color-3-background);
-    animation: sparkle-3 1.5s infinite;
-    animation-delay: calc(0.4872462572529912 * 0.1s);
-    animation-duration: calc(1.5s + 0.4872462572529912 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-4, .note.interval-4 {
     background-color: var(--sparkle-color-4-background);
-    animation: sparkle-4 1.5s infinite;
-    animation-delay: calc(0.46299272612668574 * 0.1s);
-    animation-duration: calc(1.5s + 0.46299272612668574 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-5, .note.interval-5 {
     background-color: var(--sparkle-color-5-background);
-    animation: sparkle-5 1.5s infinite;
-    animation-delay: calc(0.8440134818665683 * 0.1s);
-    animation-duration: calc(1.5s + 0.8440134818665683 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-6, .note.interval-6 {
     background-color: var(--sparkle-color-6-background);
-    animation: sparkle-6 1.5s infinite;
-    animation-delay: calc(0.2439308527391404 * 0.1s);
-    animation-duration: calc(1.5s + 0.2439308527391404 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-7, .note.interval-7 {
     background-color: var(--sparkle-color-7-background);
-    animation: sparkle-7 1.5s infinite;
-    animation-delay: calc(0.8403488465119153 * 0.1s);
-    animation-duration: calc(1.5s + 0.8403488465119153 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-8, .note.interval-8 {
     background-color: var(--sparkle-color-8-background);
-    animation: sparkle-8 1.5s infinite;
-    animation-delay: calc(0.09795611118897796 * 0.1s);
-    animation-duration: calc(1.5s + 0.09795611118897796 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-9, .note.interval-9 {
     background-color: var(--sparkle-color-9-background);
-    animation: sparkle-9 1.5s infinite;
-    animation-delay: calc(0.5826801680959761 * 0.1s);
-    animation-duration: calc(1.5s + 0.5826801680959761 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-10, .note.interval-10 {
     background-color: var(--sparkle-color-10-background);
-    animation: sparkle-10 1.5s infinite;
-    animation-delay: calc(0.8032838848885149 * 0.1s);
-    animation-duration: calc(1.5s + 0.8032838848885149 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }
 
 .sunburst-table .cell.active.interval-11, .note.interval-11 {
     background-color: var(--sparkle-color-11-background);
-    animation: sparkle-11 1.5s infinite;
-    animation-delay: calc(0.14374508103355765 * 0.1s);
-    animation-duration: calc(1.5s + 0.14374508103355765 * 0.5s);
-    transition: all 0.3s ease-in-out;
 }

@@ -90,57 +90,30 @@ class MusicApp {
     return span;
   }
 
-  /**
-   * Populate the instrument select dropdown with available instruments.
-   */
-  populateInstrumentSelect() {
-    const select = document.getElementById('instrumentSelect');
-    select.innerHTML = '';
-    for (const name in instruments) {
-      const option = document.createElement('option');
-      option.value = name;
-      option.textContent = name.charAt(0).toUpperCase() + name.slice(1).replace(/([A-Z])/g, ' $1');
-      select.appendChild(option);
+  buttonClickBase() {
+    this.emptyKeyChords();
+    this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
+  }
+
+  handleScaleButtonClick(scaleKey) {
+    this.selectedScale = scaleKey;
+    this.selectedChord = '';
+    this.activeNotes = NoteUtils.getScale(this.selectedNote, scaleKey);
+    this.updateNoteDisplay(true);
+    this.buttonClickBase(this);
+    if (modes[scaleKey]) {
+      this.generateMode(scaleKey, this.selectedNote); // Only handle Major and Minor scales
+    } else {
+      this.emptyKeyChords();
     }
   }
 
-  /**
-   * Generate buttons for chords and scales.
-   */
-  generateButtons() {
-    const chordsContainer = document.getElementById('chordsContainer');
-    const scalesContainer = document.getElementById('scalesContainer');
-
-    const createBtn = (key, isScale) => {
-      const button = document.createElement('button');
-      button.textContent = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z0-9])/g, ' $1');
-      button.classList.add('sunburst-button', 'disabled');
-      button.addEventListener('click', () => {
-        if (isScale) {
-          if (modes[key]) {
-            this.generateMode(key, this.selectedNote); // Only handle Major and Minor scales
-          } else {
-            this.emptyKeyChords();
-          }
-          this.activeNotes = NoteUtils.getScale(this.selectedNote, key);
-          this.selectedScale = key;
-          this.selectedChord = '';
-          this.updateNoteDisplay(true);
-        } else {
-          this.activeNotes = NoteUtils.getChord(this.selectedNote, key);
-          this.selectedScale = '';
-          this.selectedChord = key;
-          this.updateNoteDisplay(false);
-          this.emptyKeyChords();
-        }
-        this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
-        this.updateSelectedButton(button);
-      });
-      return button;
-    };
-
-    Object.keys(intervals).forEach(key => chordsContainer.appendChild(createBtn(key, false)));
-    Object.keys(scaleIntervals).forEach(key => scalesContainer.appendChild(createBtn(key, true)));
+  handleChordButtonClick(chordKey) {
+    this.selectedChord = chordKey;
+    this.selectedScale = '';
+    this.activeNotes = NoteUtils.getChord(this.selectedNote, chordKey);
+    this.updateNoteDisplay(false);
+    this.buttonClickBase();
   }
 
    /**
@@ -174,15 +147,6 @@ class MusicApp {
       span.appendChild(sup);
       keyChordsContainer.appendChild(span);
     });
-  }
-
-  /**
-   * Update the selected button in the sunburst UI.
-   * @param button
-   */
-  updateSelectedButton(button) {
-    document.querySelectorAll('.sunburst-button').forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
   }
 
   /**
@@ -228,15 +192,33 @@ class MusicApp {
       this.dotOn = parseInt(event.target.value, 10);
       this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
     });
+
+    document.querySelectorAll('.chord-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.sunburst-button.selected')?.classList.remove('selected');
+        e.target.classList.add('selected');
+        const value = e.target.getAttribute('data-value');
+        this.handleChordButtonClick(value);
+      });
+    });
+
+    document.querySelectorAll('.scale-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.sunburst-button.selected')?.classList.remove('selected');
+        e.target.classList.add('selected');
+        const value = e.target.getAttribute('data-value');
+        this.handleScaleButtonClick(value);
+      });
+    });
   }
 
   /**
    * Start the application by populating the instrument select, rendering the neck, and generating buttons.
    */
   start() {
-    this.populateInstrumentSelect();
     this.renderer.render(NoteUtils.getNoteIndex(this.selectedNote));
-    this.generateButtons();
     this.initEventListeners();
   }
 }
