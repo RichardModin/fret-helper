@@ -165,18 +165,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 select {
-    background: none;
-    outline: none;
-    color: var(--foreground-primary);
+    -webkit-appearance: none; /* Removes default styling in Safari */
+    -moz-appearance: none; /* Ensures compatibility with Firefox */
+    appearance: none; /* Standard property */
     background: var(--background-primary);
+    color: var(--foreground-primary);
     border: 2px solid var(--foreground-primary);
     padding: 16px;
     font-weight: bold;
-    transition: all 0.3s ease-in-out;
     cursor: pointer;
     margin: 10px;
     border-radius: 15px;
     text-align: center;
+}
+
+select::-ms-expand {
+    display: none; /* Hides the dropdown arrow in IE */
+}
+
+select::after {
+    content: none; /* Ensures no arrow is displayed */
 }
 
 #container {
